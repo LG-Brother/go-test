@@ -1,4 +1,4 @@
-package main
+package arithmetic
 
 import "fmt"
 
@@ -7,7 +7,7 @@ import "fmt"
 */
 
 // 利用Hash表
-func method1(arr []int) int {
+func findRepeatNumber1(arr []int) int {
 	vis := map[int]bool{}
 	for _, num := range arr {
 		if vis[num] {
@@ -19,7 +19,7 @@ func method1(arr []int) int {
 }
 
 // 原地交换
-func method2(arr []int) int {
+func findRepeatNumber2(arr []int) int {
 	for i := 0; i < len(arr); {
 		fmt.Println("i=", i, "打印数组：", arr)
 		if arr[i] == i {
@@ -41,7 +41,7 @@ func abs(x int) int {
 	return x
 }
 
-func main() {
+func TestFindRepeatNumber() {
 	arr := []int{3, 6, 0, 1, 2, 5, 3}
-	fmt.Println("重复的数字为：", method2(arr))
+	fmt.Println("重复的数字为：", findRepeatNumber2(arr))
 }
