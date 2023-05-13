@@ -5,5 +5,5 @@ import (
 )
 
 func main() {
-	ar.TestFindNumIn2DArray()
+	ar.TestReplace()
 }
