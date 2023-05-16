@@ -5,5 +5,5 @@ import (
 )
 
 func main() {
-	ar.TestReplace()
+	ar.TestReversPrint()
 }
