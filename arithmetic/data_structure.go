@@ -50,8 +50,40 @@ func PrintLinkedList(head *ListNode) {
 
 // PreorderPrintTree 使用非递归方法先序遍历打印二叉树
 func PreorderPrintTree(root *TreeNode) []int {
-
-	return nil
+	if root == nil {
+		return nil
+	}
+	// 定义存放遍历结果
+	var ans []int
+	ans = append(ans, root.Val)
+	// 定义临时栈
+	var stack []*TreeNode
+	stack = append(stack, root)
+	// 定义遍历树的指针
+	var p *TreeNode
+	// 定义是否遍历左子树标识（在遍历右子树时开启标识）
+	flag := true
+	for len(stack) != 0 {
+		p = stack[len(stack)-1]
+		// 遍历左子树
+		for p.Left != nil && flag {
+			p = p.Left
+			ans = append(ans, p.Val)
+			stack = append(stack, p)
+		}
+		// 弹栈
+		stack = stack[:len(stack)-1]
+		// 遍历右子树
+		if p.Right != nil {
+			p = p.Right
+			ans = append(ans, p.Val)
+			stack = append(stack, p)
+			flag = true
+		} else {
+			flag = false
+		}
+	}
+	return ans
 }
 
 // PreorderPrintTreeByRecursion 使用递归方法先序遍历打印二叉树
@@ -65,6 +97,38 @@ func PreorderPrintTreeByRecursion(root *TreeNode) []int {
 	ans = append(ans, root.Val)
 	ans = append(ans, left...)
 	ans = append(ans, right...)
+	return ans
+}
+
+// InorderPrintTreeByRecursion 使用递归方法中序遍历打印二叉树
+func InorderPrintTreeByRecursion(root *TreeNode) []int {
+	var ans []int
+	var inorder func(*TreeNode)
+	inorder = func(node *TreeNode) {
+		if node == nil {
+			return
+		}
+		inorder(node.Left)
+		ans = append(ans, node.Val)
+		inorder(node.Right)
+	}
+	inorder(root)
+	return ans
+}
+
+// InorderPrintTree 使用非递归方法中序遍历打印二叉树
+func InorderPrintTree(root *TreeNode) (ans []int) {
+	var stack []*TreeNode
+	node := root
+	for node != nil || len(stack) != 0 {
+		for node != nil {
+			stack = append(stack, node)
+			node = node.Left
+		}
+		ans = append(ans, stack[len(stack)-1].Val)
+		node = stack[len(stack)-1].Right
+		stack = stack[:len(stack)-1]
+	}
 	return ans
 }
 
