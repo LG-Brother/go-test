@@ -132,6 +132,48 @@ func InorderPrintTree(root *TreeNode) (ans []int) {
 	return ans
 }
 
+// PostorderPrintTreeByRecursion 递归后序遍历打印二叉树
+func PostorderPrintTreeByRecursion(root *TreeNode) (ans []int) {
+	var postorder func(*TreeNode)
+	postorder = func(node *TreeNode) {
+		if node == nil {
+			return
+		}
+		postorder(node.Left)
+		postorder(node.Right)
+		ans = append(ans, node.Val)
+	}
+	postorder(root)
+	return ans
+}
+
+// PostorderPrintTree 非递归后序遍历打印二叉树
+func PostorderPrintTree(root *TreeNode) (ans []int) {
+	var stack []*TreeNode
+	var prev *TreeNode
+	for root != nil || len(stack) > 0 {
+		// 遍历左子树
+		for root != nil {
+			stack = append(stack, root)
+			root = root.Left
+		}
+		// 弹栈
+		root = stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+		if root.Right == nil || root.Right == prev {
+			// 取值
+			ans = append(ans, root.Val)
+			prev = root
+			root = nil
+		} else {
+			// 遍历右子树
+			stack = append(stack, root)
+			root = root.Right
+		}
+	}
+	return
+}
+
 // LevelOrder 二叉树进行层序遍历
 func LevelOrder(root *TreeNode) []int {
 
