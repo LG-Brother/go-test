@@ -15,7 +15,7 @@ func reversPrint1(head *ListNode) []int {
 	}
 	p := head.Next
 	for ; p != nil; p = p.Next {
-		ans = append(ans, p.Value)
+		ans = append(ans, p.Val)
 	}
 	for i, j := 0, len(ans)-1; i < j; i, j = i+1, j-1 {
 		ans[i], ans[j] = ans[j], ans[i]
@@ -29,13 +29,13 @@ func reversPrint2(head *ListNode) []int {
 		return []int{}
 	}
 	ans := reversPrint2(head.Next)
-	ans = append(ans, head.Value)
+	ans = append(ans, head.Val)
 	return ans
 }
 
 func TestReversPrint() {
 	head := CreateLinkedList(5)
 	PrintLinkedList(head)
-	ans := reversPrint2(head)
+	ans := reversPrint1(head)
 	fmt.Println(ans)
 }

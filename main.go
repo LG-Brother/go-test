@@ -1,9 +1,7 @@
 package main
 
-import (
-	ar "go-learn/arithmetic"
-)
+import ar "go-learn/arithmetic"
 
 func main() {
-	ar.TestReversPrint()
+	ar.TestBuildTree()
 }
