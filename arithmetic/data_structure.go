@@ -7,6 +7,8 @@ import (
 
 /**
 定义数据结构
+BFS：Breadth-First Search 广度优先搜索算法（用队列实现）
+DFS：Depth-First Search 深度优先搜索算法（用递归、栈实现）
 */
 
 // ListNode 链表结构
@@ -174,8 +176,29 @@ func PostorderPrintTree(root *TreeNode) (ans []int) {
 	return
 }
 
-// LevelOrder 二叉树进行层序遍历
-func LevelOrder(root *TreeNode) []int {
-
-	return nil
+// LevelOrder 二叉树进行层序遍历（BFS-广度优先搜索）
+func LevelOrder(root *TreeNode) [][]int {
+	var res [][]int
+	if root == nil {
+		return nil
+	}
+	// 定义一个队列实现
+	queue := []*TreeNode{root}
+	for len(queue) > 0 {
+		innerSize := len(queue)
+		var innerVal []int
+		for i := 0; i < innerSize; i++ {
+			node := queue[i]
+			innerVal = append(innerVal, node.Val)
+			if node.Left != nil {
+				queue = append(queue, node.Left)
+			}
+			if node.Right != nil {
+				queue = append(queue, node.Right)
+			}
+		}
+		res = append(res, innerVal)
+		queue = queue[innerSize:]
+	}
+	return res
 }

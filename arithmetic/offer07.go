@@ -59,5 +59,5 @@ func TestBuildTree() {
 	preorder := []int{3, 9, 8, 5, 4, 10, 20, 15, 7}
 	inorder := []int{4, 5, 8, 10, 9, 3, 15, 20, 7}
 	tree := buildTree2(preorder, inorder)
-	fmt.Println(PostorderPrintTree(tree))
+	fmt.Println(LevelOrder(tree))
 }
