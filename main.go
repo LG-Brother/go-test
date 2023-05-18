@@ -3,5 +3,5 @@ package main
 import ar "go-learn/arithmetic"
 
 func main() {
-	ar.TestBuildTree()
+	ar.TestOffer09()
 }
