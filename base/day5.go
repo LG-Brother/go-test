@@ -14,14 +14,14 @@ func download(url string) {
 	wg.Done()
 }
 
-func main() {
-	start := time.Now()
-	for i := 0; i < 3; i++ {
-		wg.Add(1)
-		go download("a.com/" + string(i+'0'))
-	}
-	wg.Wait()
-	fmt.Println("Done!")
-	elapsed := time.Since(start)
-	fmt.Println("耗时：", elapsed)
-}
+//func main() {
+//	start := time.Now()
+//	for i := 0; i < 3; i++ {
+//		wg.Add(1)
+//		go download("a.com/" + string(i+'0'))
+//	}
+//	wg.Wait()
+//	fmt.Println("Done!")
+//	elapsed := time.Since(start)
+//	fmt.Println("耗时：", elapsed)
+//}

@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"runtime"
-	"time"
 )
 
 var title = "test go"
@@ -32,12 +31,12 @@ func printRoutineInfo() {
 	fmt.Printf("====Begin stack tracke =====\n%v\n====End stack tracke====\n", stackInfo)
 }
 
-func main() {
-	printRoutineInfo()
-	name := getAge()
-	age := getName()
-	go routine1()
-	go routine2()
-	fmt.Println(title, name, age)
-	time.Sleep(10000)
-}
+//func main() {
+//	printRoutineInfo()
+//	name := getAge()
+//	age := getName()
+//	go routine1()
+//	go routine2()
+//	fmt.Println(title, name, age)
+//	time.Sleep(10000)
+//}

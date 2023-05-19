@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 type Test interface {
 	getPName() string
 	getMoney() float32
@@ -43,9 +41,9 @@ func (wor *Worker) getPAge() int {
 	return wor.age
 }
 
-func main() {
-	var p Test
-	worker := Worker{name: "tom", age: 18}
-	p = &worker
-	fmt.Println(p.getPName())
-}
+//func main() {
+//	var p Test
+//	worker := Worker{name: "tom", age: 18}
+//	p = &worker
+//	fmt.Println(p.getPName())
+//}

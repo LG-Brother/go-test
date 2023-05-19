@@ -30,19 +30,41 @@ func downloadData(url string) {
 	chO <- url
 }
 
-func main() {
-	ch := make(chan int)
-	done := make(chan bool)
-	go producer(ch)
-	go customer(ch, done)
-	<-done
-	fmt.Println("All done!")
-	for i := 0; i < 3; i++ {
-		go downloadData("a.com/" + string(i+'0'))
-	}
-	for i := 0; i < 3; i++ {
-		msg := <-chO
-		fmt.Println("finish", msg)
-	}
-	fmt.Println("Down done!")
+//func main() {
+//	ch := make(chan int)
+//	done := make(chan bool)
+//	go producer(ch)
+//	go customer(ch, done)
+//	<-done
+//	fmt.Println("All done!")
+//	for i := 0; i < 3; i++ {
+//		go downloadData("a.com/" + fmt.Sprint(i+'0'))
+//	}
+//	for i := 0; i < 3; i++ {
+//		msg := <-chO
+//		fmt.Println("finish", msg)
+//	}
+//	fmt.Println("Down done!")
+//}
+
+func add(num1 int, num2 int) int {
+	return num1 + num2
+}
+
+type C struct {
+	B
+	money float32
+}
+
+type B struct {
+	name string
+	age  int
+}
+
+type TB interface {
+	getNameByDay6() string
+}
+
+func (b B) getNameByDay6() string {
+	return b.name
 }
