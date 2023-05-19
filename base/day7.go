@@ -10,12 +10,19 @@ func helloHandler(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("Hello World!!!"))
 }
 
+func infoHandler(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("<H1>详情</H1></br>hello world"))
+}
+
 func main() {
 	var wg sync.WaitGroup
 	wg.Add(1)
+	mux := http.NewServeMux()
+	mux.HandleFunc("/hello", helloHandler)
+	mux.HandleFunc("/info", infoHandler)
 	server := &http.Server{
 		Addr:    ":8081",
-		Handler: http.HandlerFunc(helloHandler),
+		Handler: mux,
 	}
 	defer fmt.Println("结束了。。。。。111")
 	fmt.Println("step：1")
