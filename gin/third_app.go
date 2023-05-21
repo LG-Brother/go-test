@@ -41,12 +41,26 @@ func main() {
 			"names": names,
 		})
 	})
+
+	// 访问路径会变的重定向
 	r.GET("/redirect", func(context *gin.Context) {
 		context.Redirect(http.StatusMovedPermanently, "/index")
 	})
+	// 访问路径不变的重定向
 	r.GET("/goIndex", func(context *gin.Context) {
 		context.Request.URL.Path = "/"
 		r.HandleContext(context)
 	})
+	v1 := r.Group("/v1")
+	{
+		v1.GET("/one", defaultHandler1)
+		v1.GET("/two", defaultHandler1)
+	}
 	r.Run(":8080")
+}
+
+func defaultHandler1(c *gin.Context) {
+	c.JSON(http.StatusOK, gin.H{
+		"path": c.FullPath(),
+	})
 }
