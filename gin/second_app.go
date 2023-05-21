@@ -10,7 +10,7 @@ func main() {
 	r.GET("/", defaultHandler)
 	r.GET("/testSuccess", successHandler)
 	r.GET("/testError", errorHandler)
-	// 注意，要用postman等工具测，浏览器默认是用get请求访问
+	// 注意，要用postman、curl等工具测，浏览器默认是用get请求访问
 	r.POST("/testPost", postHandler)
 	r.Run(":8080")
 }
