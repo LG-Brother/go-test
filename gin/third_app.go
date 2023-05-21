@@ -7,6 +7,12 @@ import (
 
 func main() {
 	r := gin.Default()
+	r.GET("/", func(context *gin.Context) {
+		context.String(http.StatusOK, "This is Home Page")
+	})
+	r.GET("/index", func(context *gin.Context) {
+		context.String(http.StatusOK, "This is index page")
+	})
 	r.GET("/user/:name", func(context *gin.Context) {
 		name := context.Param("name")
 		context.String(http.StatusOK, "Hello %s", name)
@@ -34,6 +40,13 @@ func main() {
 			"ids":   ids,
 			"names": names,
 		})
+	})
+	r.GET("/redirect", func(context *gin.Context) {
+		context.Redirect(http.StatusMovedPermanently, "/index")
+	})
+	r.GET("/goIndex", func(context *gin.Context) {
+		context.Request.URL.Path = "/"
+		r.HandleContext(context)
 	})
 	r.Run(":8080")
 }
