@@ -1,7 +1,13 @@
 package main
 
-import ar "go-learn/arithmetic"
+import (
+	"go-learn/cmd"
+	"log"
+)
 
 func main() {
-	ar.TestNumWays()
+	err := cmd.Execute()
+	if err != nil {
+		log.Fatalf("cmd.Execute err: %v", err)
+	}
 }
