@@ -162,6 +162,7 @@ func PostorderPrintTree(root *TreeNode) (ans []int) {
 		// 弹栈
 		root = stack[len(stack)-1]
 		stack = stack[:len(stack)-1]
+		// root.Right == prev 是为了表示该节点的右子树已经遍历
 		if root.Right == nil || root.Right == prev {
 			// 取值
 			ans = append(ans, root.Val)

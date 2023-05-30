@@ -5,5 +5,5 @@ import (
 )
 
 func main() {
-	arithmetic.TestMinArray()
+	arithmetic.TestExist()
 }
