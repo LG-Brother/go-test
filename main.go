@@ -1,13 +1,9 @@
 package main
 
 import (
-	"go-learn/cmd"
-	"log"
+	"go-learn/arithmetic"
 )
 
 func main() {
-	err := cmd.Execute()
-	if err != nil {
-		log.Fatalf("cmd.Execute err: %v", err)
-	}
+	arithmetic.TestMinArray()
 }
